@@ -1,6 +1,7 @@
-from .config import QDRANT_COLLECTION
+from configs.config import QDRANT_COLLECTION
+from .embedder import embedding_model
 
-def search_qdrant(query, embedding_model, qdrant_client, collection_name=QDRANT_COLLECTION, top_k=3):
+def search_qdrant(query, qdrant_client, embedding_model=embedding_model, collection_name=QDRANT_COLLECTION, top_k=3):
     query_vector = embedding_model.encode([query])[0]
 
     search_result = qdrant_client.search(

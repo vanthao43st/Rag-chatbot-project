@@ -1,6 +1,6 @@
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
-from .config import QDRANT_URL, QDRANT_API_KEY, QDRANT_COLLECTION, EMBEDDING_DIM
+from configs.config import QDRANT_URL, QDRANT_API_KEY, QDRANT_COLLECTION, EMBEDDING_DIM
 import time
 
 def init_qdrant():

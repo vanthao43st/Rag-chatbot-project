@@ -1,8 +1,9 @@
 from sentence_transformers import SentenceTransformer
-from .config import EMBEDDING_MODEL
+from configs.config import EMBEDDING_MODEL_NAME
 
-def embed_texts(texts, embeding_model=EMBEDDING_MODEL):
-    model = SentenceTransformer(embeding_model)
-    embedding_vectors = model.encode(texts)
+embedding_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
+
+def embed_texts(texts):
+    embedding_vectors = embedding_model.encode(texts)
     print(f"Đã tạo embedding cho {len(embedding_vectors)} đoạn văn bản.")
-    return embedding_vectors, model
+    return embedding_vectors

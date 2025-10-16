@@ -20,7 +20,7 @@ def upload_documents():
     try:
         documents = load_documents()
         chunks, texts = split_documents(documents)
-        embedded_vectors, embedding_model = embed_texts(texts)
+        embedded_vectors = embed_texts(texts)
 
         create_collection(qdrant_client)
         upsert_vectors(chunks, embedded_vectors, qdrant_client)
@@ -39,10 +39,13 @@ def query_documents():
         if not query:
             return jsonify({"error": "Query is required."}), 400
 
-        search_results = search_qdrant(query, embedding_model, qdrant_client)
+        search_results = search_qdrant(query, qdrant_client)
         response = ask_gemini(search_results, query)
 
         return jsonify({"response": response}), 200
     except Exception as e:
         logger.error(f"Error in /query: {e}")
         return jsonify({"error": str(e)}), 500
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=False)
