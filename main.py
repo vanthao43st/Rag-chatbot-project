@@ -3,13 +3,6 @@ from src import (
     init_qdrant, create_collection, upsert_vectors, search_qdrant,
     ask_gemini
 )
-import os, ssl, certifi
-import httpx
-
-os.environ["SSL_CERT_FILE"] = certifi.where()
-
-# Patch cho httpx (thư viện Qdrant dùng bên trong)
-httpx_client = httpx.Client(verify=certifi.where())
 
 def main():
     # Load and split documents

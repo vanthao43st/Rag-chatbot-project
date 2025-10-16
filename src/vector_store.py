@@ -1,6 +1,6 @@
 from qdrant_client import QdrantClient
 from qdrant_client.models import VectorParams, Distance, PointStruct
-from configs.config import QDRANT_URL, QDRANT_API_KEY, QDRANT_COLLECTION, EMBEDDING_DIM
+from configs.config import QDRANT_URL, QDRANT_API_KEY, QDRANT_COLLECTION
 import time
 
 def init_qdrant():
@@ -10,14 +10,12 @@ def init_qdrant():
 
 def create_collection(qdrant_client):
     qdrant_client.recreate_collection(
-        collection_name=QDRANT_COLLECTION,
+        collection_name="pdf_chunks",
         vectors_config=VectorParams(
-            size=EMBEDDING_DIM,
-            distance=Distance.COSINE
+            size=768,                   # kích thước vector (phải đúng với embedding model)
+            distance=Distance.COSINE    # kiểu đo khoảng cách (Cosine, Euclidean, Dot)
         )
     )
-
-    print(f"✅ Collection '{QDRANT_COLLECTION}' đã được tạo.")
 
 def upsert_vectors(chunks, embedded_vectors, qdrant_client, batch_size=100):
     total = len(chunks)
