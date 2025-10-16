@@ -4,3 +4,5 @@ sentence-transformers
 qdrant-client
 google-generativeai
 python-dotenv
+flask
+flask-cors
