@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  rag-app:
+    build: .
+    container_name: rag-app
+    ports:
+      - "8080:8080"
+    environment:
+      - GOOGLE_GEMINI_API_KEY=${GOOOEL_GEMINI_API_KEY}
+      - QDRANT_URL=${QDRANT_URL}
+      - QDRANT_API_KEY=${QDRANT_API_KEY}
+    volumes:
+      - .:/app
+    networks:
+      - rag-network
+
+  # React Frontend Service
+  frontend:
+    build:
+      context: ./rag-frontend # Thư mục frontend React
+    container_name: react-frontend
+    ports:
+      - "3000:3000" # Chạy React frontend trên port 3000
+    environment:
+      - REACT_APP_API_URL=http://flask-api:5000 # Kết nối với Flask API trong cùng Docker network
+    volumes:
+      - ./rag-frontend:/app
+    networks:
+      - rag-network
+    depends_on:
+      - flask-api
+
+# Tạo Docker network để các services có thể kết nối với nhau
+networks:
+  rag-network:
+    driver: bridge

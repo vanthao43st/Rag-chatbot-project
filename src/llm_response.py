@@ -1,8 +1,8 @@
 import google.generativeai as genai
-from configs.config import GEMINI_API_KEY, GEMINI_MODEL
+from configs.config import GOOOEL_GEMINI_API_KEY, GEMINI_MODEL
 
 def ask_gemini(results_search, question):
-    genai.configure(api_key=GEMINI_API_KEY)
+    genai.configure(api_key=GOOOEL_GEMINI_API_KEY)
 
     context = "\n".join([result.payload.get('text', '') for result in results_search])
 

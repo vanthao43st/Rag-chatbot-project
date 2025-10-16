@@ -15,7 +15,7 @@ QDRANT_COLLECTION = "pdf_chunks"
 EMBEDDING_MODEL_NAME = "intfloat/multilingual-e5-base"
 EMBEDDING_DIM = 768
 
-GEMINI_API_KEY = os.getenv("GOOOEL_GEMINI_API_KEY")
+GOOOEL_GEMINI_API_KEY = os.getenv("GOOOEL_GEMINI_API_KEY")
 GEMINI_MODEL = "gemini-2.5-flash-preview-05-20"
 
 BATCH_SIZE = 100    # Số lượng điểm để upsert mỗi lần
