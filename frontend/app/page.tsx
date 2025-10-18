@@ -7,26 +7,48 @@ import { DocumentView } from "@/components/document-view"
 
 export default function Home() {
   const [view, setView] = useState<"empty" | "upload" | "document">("empty")
-  const [uploadedFile, setUploadedFile] = useState<{ name: string; type: string } | null>(null)
+  const [uploadedFiles, setUploadedFiles] = useState<{ name: string; type: string }[]>([])
 
   const handleOpenUpload = () => {
     setView("upload")
   }
 
   const handleCloseUpload = () => {
-    setView("empty")
+    setView(uploadedFiles.length > 0 ? "document" : "empty")
   }
 
   const handleFileUpload = (file: File) => {
-    setUploadedFile({ name: file.name, type: file.type })
+    setUploadedFiles((prev) => [...prev, { name: file.name, type: file.type }])
     setView("document")
+  }
+
+  const handleDeleteFile = (index: number) => {
+    setUploadedFiles((prev) => {
+      const newFiles = prev.filter((_, i) => i !== index)
+      if (newFiles.length === 0) {
+        setView("empty")
+      }
+      return newFiles
+    })
+  }
+
+  const handleDeleteAllFiles = () => {
+    setUploadedFiles([])
+    setView("empty")
   }
 
   return (
     <div className="h-screen w-full">
       {view === "empty" && <EmptyState onOpenUpload={handleOpenUpload} />}
       {view === "upload" && <UploadModal onClose={handleCloseUpload} onFileUpload={handleFileUpload} />}
-      {view === "document" && uploadedFile && <DocumentView file={uploadedFile} />}
+      {view === "document" && uploadedFiles.length > 0 && (
+        <DocumentView
+          files={uploadedFiles}
+          onDeleteFile={handleDeleteFile}
+          onDeleteAllFiles={handleDeleteAllFiles}
+          onOpenUpload={handleOpenUpload}
+        />
+      )}
     </div>
   )
 }

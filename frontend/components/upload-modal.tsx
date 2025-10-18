@@ -46,8 +46,8 @@ export function UploadModal({ onClose, onFileUpload }: UploadModalProps) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-3xl rounded-3xl bg-card shadow-2xl animate-in zoom-in-95 duration-200 border-2 border-primary/20">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+      <div className="relative w-full max-w-3xl rounded-3xl bg-card shadow-2xl border-2 border-primary/20">
         <div className="flex items-center justify-between border-b-2 border-primary/20 bg-gradient-to-r from-blue-50 to-sky-100 px-8 py-6 rounded-t-3xl">
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-sky-500 shadow-lg shadow-blue-500/30">

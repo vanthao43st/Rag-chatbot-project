@@ -9,8 +9,11 @@ interface EmptyStateProps {
 
 export function EmptyState({ onOpenUpload }: EmptyStateProps) {
   return (
-    <div className="flex h-full">
-      <div className="w-[400px] border-r-2 border-blue-200 bg-gradient-to-b from-white to-blue-50 p-6">
+    <div className="flex h-full" suppressHydrationWarning>
+      <div
+        className="w-[400px] border-r-2 border-blue-200 bg-gradient-to-b from-white to-blue-50 p-6"
+        suppressHydrationWarning
+      >
         <div className="mb-8 flex items-center justify-between">
           <h2 className="text-lg font-bold text-foreground">Nguồn</h2>
           <Button
@@ -49,7 +52,7 @@ export function EmptyState({ onOpenUpload }: EmptyStateProps) {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col" suppressHydrationWarning>
         <div className="flex items-center justify-between border-b-2 border-blue-200 bg-gradient-to-r from-white to-blue-50 px-6 py-4">
           <h2 className="text-lg font-bold text-foreground">Cuộc trò chuyện</h2>
           <Button
