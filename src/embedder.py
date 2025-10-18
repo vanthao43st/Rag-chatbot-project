@@ -1,5 +1,8 @@
 from sentence_transformers import SentenceTransformer
 from configs.config import EMBEDDING_MODEL_NAME
+import warnings
+
+warnings.filterwarnings("ignore", category=FutureWarning, module="huggingface_hub")
 
 embedding_model = SentenceTransformer(EMBEDDING_MODEL_NAME)
 

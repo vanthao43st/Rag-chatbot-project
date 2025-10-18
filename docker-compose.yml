@@ -22,7 +22,7 @@ services:
     ports:
       - "3000:3000" # Chạy React frontend trên port 3000
     environment:
-      - REACT_APP_API_URL=http://flask-api:5000 # Kết nối với Flask API trong cùng Docker network
+      - REACT_APP_API_URL=http://fast-api:5000 # Kết nối với Flask API trong cùng Docker network
     volumes:
       - ./rag-frontend:/app
     networks:

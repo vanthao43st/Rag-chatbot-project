@@ -4,3 +4,7 @@ from .embedder import embed_texts, embedding_model
 from .vector_store import init_qdrant, create_collection, upsert_vectors
 from .search import search_qdrant
 from .llm_response import ask_gemini
+
+__all__ = ["load_documents", "split_documents", "embed_texts", "embedding_model",
+           "init_qdrant", "create_collection", "upsert_vectors",
+           "search_qdrant", "ask_gemini"]
