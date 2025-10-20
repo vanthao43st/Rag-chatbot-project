@@ -7,6 +7,7 @@ DATA_PATH = "./data"
 
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
+TOP_K = 3
 
 QDRANT_URL = os.getenv("QDRANT_URL")
 QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")

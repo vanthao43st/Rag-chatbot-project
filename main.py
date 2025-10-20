@@ -13,15 +13,14 @@ def main():
     embedded_vectors = embed_texts(texts)
 
     # Initialize Qdrant and create collection
-    qdrant_client = init_qdrant()
-    create_collection(qdrant_client)
+    create_collection()
 
     # Upsert vectors into Qdrant
-    upsert_vectors(chunks, embedded_vectors, qdrant_client)
+    upsert_vectors(chunks, embedded_vectors)
 
     # Example search query
     query = "Đối tượng dự tuyển sinh yêu cầu như thế nào?"
-    search_results = search_qdrant(query, qdrant_client)
+    search_results = search_qdrant(query)
 
     # Generate response using Gemini
     response = ask_gemini(search_results, query)

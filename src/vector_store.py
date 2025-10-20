@@ -3,12 +3,9 @@ from qdrant_client.models import VectorParams, Distance, PointStruct
 from configs.config import QDRANT_URL, QDRANT_API_KEY, QDRANT_COLLECTION
 import time
 
-def init_qdrant():
-    qdrant_client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
-    print("✅ Kết nối Qdrant thành công.")
-    return qdrant_client
+qdrant_client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
 
-def create_collection(qdrant_client):
+def create_collection():
     qdrant_client.recreate_collection(
         collection_name="pdf_chunks",
         vectors_config=VectorParams(
@@ -17,7 +14,7 @@ def create_collection(qdrant_client):
         )
     )
 
-def upsert_vectors(chunks, embedded_vectors, qdrant_client, batch_size=100):
+def upsert_vectors(chunks, embedded_vectors, batch_size=100):
     total = len(chunks)
 
     for start in range(0, total, batch_size):
