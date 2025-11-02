@@ -28,7 +28,7 @@ def reader_node(state: State):
     # Tìm context liên quan từ Qdrant
     log_step("Reader", "Tìm context trong vector DB...")
     results = search_qdrant(state["question"])
-    state["contexts"] = [r["text"] for r in results]
+    state["contexts"] = [result["text"] for result in results]
     return state
 
 # === Summarizer Agent ===
@@ -41,3 +41,15 @@ def summarizer_node(state: State):
 
     summary = ask_gemini(prompt)
     state["scratchpad"] = [f"[Tóm tắt]: {summary}"]
+
+# === ToolCaller Agent ===
+def toolcaller_node(state: State):
+    log_step("ToolCaller", "Phát hiện và gọi tool nếu cần...")
+    question = state["question"].lower()
+    logs = []
+    result = {}
+
+    # Kiểm tra và gọi tool phù hợp
+    # Excel Tool
+    if "excel" in question or ".xlsx" in question or ".csv" in question or "bảng tính" in question:
+        logs.append("📊 Dùng Excel Tool")

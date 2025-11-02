@@ -9,3 +9,5 @@ uvicorn
 pydantic
 langgraph
 pytesseract
+psycopg2-binary
+unstructured[docx]
